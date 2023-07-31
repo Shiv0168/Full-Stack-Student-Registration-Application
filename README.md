@@ -1,0 +1,2 @@
+# StudentRegistrationApplication
+StudentRegistrationApplication with backend and frontend
