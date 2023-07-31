@@ -1,0 +1,24 @@
+<div class="container mt-5 ">
+
+      <table class="table table-info table-striped shadow-lg">
+        <thead>
+            <tr>
+              <th scope="col">Id</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let student of allStudent">
+              <th scope="row">{{student.id}}</th>
+              <td>{{student.name}}</td>
+              <td>{{student.email}}</td>
+              <td>
+                <button routerLink="/edit/{{student.id}}" class="btn btn-outline-primary">Edit</button>
+                <button (click)="deleteStudent(student.id)" class="btn btn-outline-danger ms-3">Delte</button>
+              </td>
+            </tr>
+          </tbody>
+      </table>
+</div>

@@ -1,0 +1,15 @@
+<div class="container mt-5">
+    <form class="shadow-lg  border" [formGroup]="editStudent" (ngSubmit)="submit()"> 
+        <div class="mb-3">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" class="form-control" id="name" name="name" formControlName="name">
+        
+        </div>
+        <div class="mb-3">
+          <label for="email" class="form-label">Email</label>
+          <input type="email" class="form-control" id="email" formControlName="email" name="email">
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="reset" class="btn btn-secondary ms-3">Reset</button>
+      </form>
+</div>
