@@ -1,15 +1,40 @@
 <div class="container mt-5">
-    <form class="shadow-lg  border" [formGroup]="editStudent" (ngSubmit)="submit()"> 
-        <div class="mb-3">
-          <label for="name" class="form-label">Name</label>
-          <input type="text" class="form-control" id="name" name="name" formControlName="name">
-        
-        </div>
-        <div class="mb-3">
-          <label for="email" class="form-label">Email</label>
-          <input type="email" class="form-control" id="email" formControlName="email" name="email">
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <button type="reset" class="btn btn-secondary ms-3">Reset</button>
-      </form>
+  <form
+    class="shadow-lg border"
+    [formGroup]="editStudent"
+    (ngSubmit)="submit()"
+  >
+    <div class="mb-3">
+      <label for="name" class="form-label">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        id="name"
+        name="name"
+        formControlName="name"
+        [ngClass]="{'is-invalid':name.touched && name.invalid}"
+      />
+      <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+        <div *ngIf="name.errors?.required">Name Required</div>
+        <div *ngIf="name.errors?.minlength">Minimum 3 character required</div>
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        formControlName="email"
+        name="email"
+        [ngClass]="{'is-invalid':email.touched && email.invalid}"
+      />
+      <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+        <div *ngIf="email.errors?.required">Email Required</div>
+        <div *ngIf="email.errors?.email">Invalid format</div>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-primary" [disabled]="editStudent.invalid">Submit</button>
+    <button type="reset" class="btn btn-secondary ms-3">Reset</button>
+  </form>
 </div>

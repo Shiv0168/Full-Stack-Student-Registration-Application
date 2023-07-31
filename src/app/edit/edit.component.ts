@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ApiServiceService } from '../api-service.service';
 
@@ -19,8 +19,8 @@ export class EditComponent implements OnInit{
     private activatedRoute:ActivatedRoute
   ) { 
      this.editStudent = this.fb.group({
-    name: [''],
-    email: [''],
+    name: ['' , [Validators.required , Validators.minLength(3)]],
+    email: ['',[Validators.required , Validators.email]],
   });
 }
 
@@ -29,8 +29,8 @@ export class EditComponent implements OnInit{
     this.apiService.getStudentById(id).subscribe({
       next:(data)=>{
         this.editStudent = this.fb.group({
-          name: [data.name],
-          email: [data.email],
+          name: [data.name , [Validators.required , Validators.minLength(3)]],
+          email: [data.email , [Validators.email , Validators.required]],
         });
       },
       error:(error)=>{console.log(error);

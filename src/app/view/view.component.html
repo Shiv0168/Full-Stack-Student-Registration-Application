@@ -2,7 +2,7 @@
 
       <table class="table table-info table-striped shadow-lg">
         <thead>
-            <tr>
+            <tr class="table-danger text-uppercase text-bold">
               <th scope="col">Id</th>
               <th scope="col">Name</th>
               <th scope="col">Email</th>
@@ -16,7 +16,7 @@
               <td>{{student.email}}</td>
               <td>
                 <button routerLink="/edit/{{student.id}}" class="btn btn-outline-primary">Edit</button>
-                <button (click)="deleteStudent(student.id)" class="btn btn-outline-danger ms-3">Delte</button>
+                <button (click)="deleteStudent(student.id)" class="btn btn-outline-danger ms-3">Delete</button>
               </td>
             </tr>
           </tbody>

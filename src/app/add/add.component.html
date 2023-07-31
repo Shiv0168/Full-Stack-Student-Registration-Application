@@ -1,15 +1,49 @@
 <div class="container mt-5">
-    <form class="shadow-lg  border" [formGroup]="addStudent" (ngSubmit)="submit()"> 
-        <div class="mb-3">
-          <label for="name" class="form-label">Name</label>
-          <input type="text" class="form-control" id="name" name="name" formControlName="name">
-        
-        </div>
-        <div class="mb-3">
-          <label for="email" class="form-label">Email</label>
-          <input type="email" class="form-control" id="email" formControlName="email" name="email">
-        </div>
-        <button type="submit" class="btn btn-primary">add</button>
-        <button type="reset" class="btn btn-secondary ms-3">Reset</button>
-      </form>
+  <form class="shadow-lg border" 
+  [formGroup]="addStudent" 
+  (ngSubmit)="submit()"
+  >
+    <div class="m-3">
+      <label for="name" class="form-label">Name</label>
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Enter name here ..."
+        id="name"
+        name="name"
+        formControlName="name"
+        [ngClass]="{'is-invalid': name.touched && name.invalid }"
+      />
+      <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+        <div *ngIf="name.errors?.required">Full Name is required</div>
+        <div *ngIf="name.errors?.minlength">Minimum 3 character Required</div>
+      </div>
+    </div>
+    <div class="m-3">
+      <label for="email" class="form-label">Email</label>
+      <input
+        type="email"
+        class="form-control"
+        id="email"
+        placeholder="Enter email here..."
+        formControlName="email"
+        name="email"
+        [ngClass]="{'is-invalid':email.touched && email.invalid }"
+      />
+      <div class="alert alert-danger" *ngIf="email.touched && email.invalid">
+        <div *ngIf="email.errors?.required">Email required</div>
+        <div *ngIf="email.errors?.email">Invalid Email</div>
+      </div>
+    </div>
+    <div class="m-3">
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="addStudent.invalid"
+      >
+        add
+      </button>
+      <button type="reset" class="btn btn-secondary ms-3">Reset</button>
+    </div>
+  </form>
 </div>

@@ -2,25 +2,24 @@ import { Component, OnInit } from '@angular/core';
 import { ApiServiceService } from '../api-service.service';
 import { Router } from '@angular/router';
 import { Student } from '../Model/Student';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-add',
   templateUrl: './add.component.html',
   styleUrls: ['./add.component.css'],
 })
-export class AddComponent implements OnInit {
-  addStudent: any = '';
+export class AddComponent {
+  addStudent: any;
 
   constructor(
     private apiService: ApiServiceService,
     private router: Router,
     private fb: FormBuilder
-  ) {}
-  ngOnInit(): void {
+  ) {
     this.addStudent = this.fb.group({
-      name: [''],
-      email: [''],
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      email: ['', [Validators.required, Validators.email]],
     });
   }
 
