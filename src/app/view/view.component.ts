@@ -30,9 +30,8 @@ export class ViewComponent implements OnInit{
   deleteStudent(id:number){
     this.apiService.deleteStudent(id).subscribe({
       next:(data)=>{
-        // console.log(data),
-        // this.allStudent = this.allStudent.filter((Student: { id: number; })=>Student.id != this.allStudent.id)},
-        this.getAllStudent()},
+        this.allStudent = data;
+      },
       error:(error: any)=>{console.log(error);
       }
     })
